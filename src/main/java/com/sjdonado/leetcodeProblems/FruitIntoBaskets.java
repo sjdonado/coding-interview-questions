@@ -33,7 +33,9 @@ public class FruitIntoBaskets {
     // [3,3,3,1,2,1,1,2,3,3,4]
     //        ^       ^   
     //            5 <- Current max value
+    
     public int totalFruit(int[] tree) {
+        // Edge cases validation
         if (tree == null || tree.length == 0) {
             return 0;
         }
@@ -50,8 +52,8 @@ public class FruitIntoBaskets {
                 store.put(tree[i], i++);
             }
             
-            // If a new fruit get it a new basket its created, but in the next
-            // conditional stament is removed the leftmost basket.
+            // If a new fruit its collected a new basket is created, therefore
+            // in the next conditional stament is removed one basket.
             if (store.size() > 2) {
                 int min = tree.length - 1;
                 for (int value : store.values()) {
@@ -60,6 +62,7 @@ public class FruitIntoBaskets {
                 // We need to set min + 1 because the new left limit of our 
                 // sliding window is the next element.
                 j = min + 1;
+                // The leftmost basket is removed.
                 store.remove(tree[min]);
             }
             
